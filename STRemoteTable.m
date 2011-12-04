@@ -7,11 +7,7 @@
 
 #import "STRemoteTable.h"
 
-#ifdef ST_REMOTE_TABLE_USE_CSV
 #import "CSVParser.h"
-#endif
-
-#import "debug.h"
 
 @implementation STRemoteTable
 
@@ -32,7 +28,6 @@
 
 -(void) dataDidLoad {
 	NSString* csv= [[NSString alloc] initWithData:self.contentData encoding:NSUTF8StringEncoding];
-#ifdef ST_REMOTE_TABLE_USE_CSV
 	CSVParser* parser = [[CSVParser alloc] initWithString:csv
 												separator:@","
 												hasHeader:YES 
@@ -45,7 +40,6 @@
 	array = [[NSMutableArray alloc] initWithCapacity:records.count];
 	
 	[parser release];
-#endif
 	for (NSDictionary* d in records) {
 		NSObject* obj = [[NSClassFromString(className) alloc] initWithDictionary:d];
 		[array addObject:obj];

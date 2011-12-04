@@ -8,11 +8,9 @@
 #import <Foundation/Foundation.h>
 #import "STRemoteObject.h"
 
-//#define ST_REMOTE_TABLE_USE_CSV
-
 #define RemoteTableDidUpdate kRemoteObjectUpdatedNotification
 
-@protocol RemoteItem
+@protocol STRemoteItem
 
 -(id) initWithDictionary:(NSDictionary*) dict;
 

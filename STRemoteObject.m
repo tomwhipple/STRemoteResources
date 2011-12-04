@@ -86,7 +86,7 @@ static NSUInteger numberOfRemoteObjects = 0;
 -(void) loadCachedRequest:(NSURLRequest*) request {
     NSCachedURLResponse* cacheResponse = [[NSURLCache sharedURLCache] cachedResponseForRequest:request];
     if (cacheResponse) {
-        debugLog(@"cache hit (mem) for %@: %@",[request URL],[cacheResponse userInfo]);
+        STDebugRemoteLog(@"cache hit (mem) for %@: %@",[request URL],[cacheResponse userInfo]);
         contentData = [[NSData alloc] initWithData:[cacheResponse data]];
     }
 	
