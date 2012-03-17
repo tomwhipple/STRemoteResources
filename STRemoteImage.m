@@ -32,6 +32,7 @@
 	if ((self = [super initWithURL:_url])) {
 		use2xImage = [[self class] deviceUses2x];
 		self.shouldCheckServer = NO;
+    cachePolicy = NSURLRequestReturnCacheDataElseLoad;
 	}
 	return self;
 }

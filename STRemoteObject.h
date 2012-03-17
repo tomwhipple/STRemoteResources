@@ -27,6 +27,8 @@
 	NSString* filename;
 	NSString* mimeType;
 	NSString* cacheFileName;
+  
+  NSURLRequestCachePolicy cachePolicy;
 	
 	@private
 	NSURLConnection* connection;

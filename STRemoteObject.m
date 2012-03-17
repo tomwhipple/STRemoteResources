@@ -75,6 +75,7 @@ static NSUInteger numberOfRemoteObjects = 0;
 
 - (id) initWithURL:(NSURL*) url {
 	if ((self = [super init])) {
+    cachePolicy = NSURLRequestUseProtocolCachePolicy;
 		originalURL = [url retain];
 		shouldCheckServer = YES;
     shouldCheckBundle = YES;
@@ -144,11 +145,12 @@ static NSUInteger numberOfRemoteObjects = 0;
 			resourceURL = [originalURL copy];
 		}
 		
-		NSURLRequest* request = [NSURLRequest requestWithURL:resourceURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:3.0];
+		NSURLRequest* request = [NSURLRequest requestWithURL:resourceURL cachePolicy:cachePolicy timeoutInterval:3.0];
 		
 		[self loadCachedRequest:request];
 		
 		if ((shouldCheckServer || !contentData) && !self.downloadInProgress) {
+      STDebugRemoteLog(@"downloading: %@", [[request URL] absoluteString]);
 			connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 			numberOfActiveDownloads++;
 			[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
