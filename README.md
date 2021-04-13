@@ -1,3 +1,5 @@
+**Archived:** This library is obsolete.
+
 STRemoteResources
 =================
 
